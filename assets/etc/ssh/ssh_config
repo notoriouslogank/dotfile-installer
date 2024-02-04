@@ -1,0 +1,13 @@
+Include /etc/ssh/ssh_config.d/*.conf
+
+Host apollo
+Hostname 208.85.21.246
+SendEnv LANG LC_*
+HashKnownHosts yes
+GSSAPIAuthentication yes
+
+Host mimir
+Hostname 192.168.0.13
+SendEnv LANG LC_*
+HashKnownHosts yes
+GSSAPIAuthentication yes

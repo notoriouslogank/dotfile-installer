@@ -1,0 +1,24 @@
+Include /etc/ssh/sshd_config.d/*.conf
+
+Port 22
+AllowUsers logank
+ChallengeRespoonseAuthentication no
+PubkeyAuthentication yes
+PasswordAuthentication yes
+SyslogFacility AUTH
+LogLevel VERBOSE
+LoginGraceTime 30s
+PermitRootLogin no
+StrictModes yes
+MaxSessions 3
+MaxAuthTries 3
+UsePAM no
+AllowAgentForwarding yes
+AllowTcpForwarding yes
+X11Forwarding no
+PermitTTY yes
+Banner /etc/ssh/banner
+PrintMotd no
+PrintLastLog no
+#TCPKeepAlive no
+AcceptEnv LANG LC_*
