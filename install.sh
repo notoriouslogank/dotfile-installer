@@ -43,25 +43,25 @@ fi
 declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl")
 
 # Update apt and install applications
-sudo apt update -y
-for i in "${apps[@]}"; do
-    type -p "$i" >/dev/null || (sudo apt install "$i" -y)
-done
+#sudo apt update -y
+#for i in "${apps[@]}"; do
+#    type -p "$i" >/dev/null || (sudo apt install "$i" -y)
+#done
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" # Oh-my-zsh
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" # Oh-my-zsh
 
-cd ~/repositories
+#cd ~/repositories
 
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
-    sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
-    sudo apt update &&
-    sudo apt install gh -y # GitHub CLI
+#curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
+#    sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
+#    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+#    sudo apt update &&
+#    sudo apt install gh -y # GitHub CLI
 
 # Create banner
-sudo figlet -f slant $HOST >~/banner
-sudo cp ~/banner /etc/ssh/banner
-sudo rm ~/banner
+#sudo figlet -f slant $HOST >~/banner
+#sudo cp ~/banner /etc/ssh/banner
+#sudo rm ~/banner
 
 # Move config files to necessary destinations
 cd "$parent_path"
