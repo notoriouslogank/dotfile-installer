@@ -38,16 +38,14 @@ if test -f ~/.tmux.conf; then
     sudo mv ~/.tmux.conf ~/backups/.tmux.conf.bak
 fi
 
-# Update apt
-sudo apt update -y # Need to check for package manager to make it system-agnostic
-
 # Application list
-APPLICATIONS="neofetch ranger git lsd bpytop htop zsh toilet figlet tmux"
+declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl")
 
-# Install apps
-sudo apt install $APPLICATIONS -y
-
-type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+# Update apt and install applications
+sudo apt update -y
+for i in "${apps[@]}"; do
+    type -p "$i" >/dev/null || (sudo apt install "$i" -y)
+done
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" # Oh-my-zsh
 
