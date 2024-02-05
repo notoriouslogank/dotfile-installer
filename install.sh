@@ -65,6 +65,7 @@ sudo cp ~/banner /etc/ssh/banner
 sudo rm ~/banner
 
 # Move config files to necessary destinations
+cd ~/dotfiles-installer
 sudo cp assets/etc/ssh/ssh_config /etc/ssh/ssh_config &&
     sudo cp assets/etc/ssh/sshd_config /etc/ssh/sshd_config &&
     sudo cp -r assets/.config/bpytop ~/.config &&
