@@ -66,9 +66,15 @@ sudo rm ~/banner
 # Move config files to necessary destinations
 cd "$parent_path"
 sudo cp "$parent_path/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config" &&
+    echo "Moved ssh_config."
     sudo cp "$parent_path/assets/etc/ssh/sshd_config" "/etc/ssh/sshd_config" &&
+    echo "Moved sshd_config."
     sudo cp -r "$parent_path/assets/.config/bpytop" ~/.config &&
+    echo "Moved bpytop."
     sudo cp -r "$parent_path/assets/.config/neofetch" ~/.config &&
-    sudo cp -r "$parent_path/assets/home_dir/*" ~ &&
+    echo "Moved neofetch to .config."
+    sudo cp -r "$parent_path/assets/home_dir/.zshrc" ~ &&
+    echo "Moved .bashrc to ~"
+    sudo cp -r "$parent_path/assets/home_dir/.bashrc" ~ &&
     clear &&
     echo "Okay, well, it's done. Let's see if it actually worked..."
