@@ -4,7 +4,9 @@
 cd ~
 
 # Create backup directory
-mkdir ~/backups
+if ! test -f ~/backups; then
+    mkdir ~/backups
+fi
 
 # Check if ~/.config exists and create it if not
 if ! test -f ~/.config; then
@@ -45,12 +47,6 @@ APPLICATIONS="neofetch ranger git lsd bpytop htop zsh toilet figlet tmux"
 # Install apps
 sudo apt install $APPLICATIONS -y
 
-# Create repository dest
-mkdir ~/repositories
-
-# Clone repositories
-cd ~/repositories
-
 type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" # Oh-my-zsh
@@ -64,13 +60,15 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
     sudo apt install gh -y # GitHub CLI
 
 # Create banner
-sudo figlet -f slant $HOST >/etc/ssh/banner
+sudo figlet -f slant $HOST >~/banner
+sudo cp ~/banner /etc/ssh/banner
+sudo rm ~/banner
 
 # Move config files to necessary destinations
-sudo mv assets/etc/ssh/ssh_config /etc/ssh/ssh_config &&
-    sudo mv assets/etc/ssh/sshd_config /etc/ssh/sshd_config &&
-    sudo mv -r assets/.config/bpytop ~/.config &&
-    sudo mv -r assets/.config/neofetch ~/.config &&
-    sudo mv -r assets/home_dir/* ~ &&
+sudo cp assets/etc/ssh/ssh_config /etc/ssh/ssh_config &&
+    sudo cp assets/etc/ssh/sshd_config /etc/ssh/sshd_config &&
+    sudo cp -r assets/.config/bpytop ~/.config &&
+    sudo cp -r assets/.config/neofetch ~/.config &&
+    sudo cp -r assets/home_dir/* ~ &&
     clear &&
     echo "Okay, well, it's done. Let's see if it actually worked..."
