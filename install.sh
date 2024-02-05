@@ -81,4 +81,6 @@ sudo cp "$parent_path/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config" &&
     sudo cp -r "$parent_path/assets/home_dir/.zshrc" ~ &&
     echo "Moved .bashrc to ~" &&
     sudo cp -r "$parent_path/assets/home_dir/.bashrc" ~ &&
+    echo "Moved .tmux.conf to ~" &&
+    sudo cp -r "$parent_path/assets/home_dir/.tmux.conf" ~ &&
     echo "Okay, well, it's done. Let's see if it actually worked..."
