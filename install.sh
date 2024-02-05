@@ -39,10 +39,8 @@ if test -f ~/.tmux.conf; then
     sudo mv ~/.tmux.conf ~/backups/.tmux.conf.bak
 fi
 
-# Application list
-declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl")
-
 # Update apt and install applications
+declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl")
 sudo apt update -y
 for i in "${apps[@]}"; do
     type -p "$i" >/dev/null || (sudo apt install "$i" -y)
@@ -78,5 +76,4 @@ sudo cp "$parent_path/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config" &&
     sudo cp -r "$parent_path/assets/home_dir/.zshrc" ~ &&
     echo "Moved .bashrc to ~" &&
     sudo cp -r "$parent_path/assets/home_dir/.bashrc" ~ &&
-    clear &&
     echo "Okay, well, it's done. Let's see if it actually worked..."
