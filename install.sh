@@ -1,11 +1,12 @@
 #!/bin/bash
-
-# Navigate to ~ first
-cd ~
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$parent_path"
+echo "$parent_path"
 
 # Create backup directory
 if ! test -f ~/backups; then
     mkdir ~/backups
+
 fi
 
 # Check if ~/.config exists and create it if not
@@ -63,11 +64,11 @@ sudo cp ~/banner /etc/ssh/banner
 sudo rm ~/banner
 
 # Move config files to necessary destinations
-cd ~/dotfile-installer
-sudo cp assets/etc/ssh/ssh_config /etc/ssh/ssh_config &&
-    sudo cp assets/etc/ssh/sshd_config /etc/ssh/sshd_config &&
-    sudo cp -r assets/.config/bpytop ~/.config &&
-    sudo cp -r assets/.config/neofetch ~/.config &&
-    sudo cp -r assets/home_dir/* ~ &&
+cd "$parent_path"
+sudo cp "$parent_path/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config" &&
+    sudo cp "$parent_path/assets/etc/ssh/sshd_config" "/etc/ssh/sshd_config" &&
+    sudo cp -r "$parent_path/assets/.config/bpytop" ~/.config &&
+    sudo cp -r "$parent_path/assets/.config/neofetch" ~/.config &&
+    sudo cp -r "$parent_path/assets/home_dir/*" ~ &&
     clear &&
     echo "Okay, well, it's done. Let's see if it actually worked..."
