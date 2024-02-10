@@ -58,5 +58,5 @@ if ! shopt -oq posix; then
     fi
 fi
 
-#. "$HOME/.cargo/env"
+source "$HOME/.cargo/env"
 #source /home/logank/.cargo/registry/src/github.com-1ecc6299db9ec823/alacritty-0.11.0/extra/completions/alacritty.bash

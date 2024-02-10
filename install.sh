@@ -4,62 +4,74 @@ parent_path=$(
     pwd -P
 )
 cd "$parent_path"
-echo "$parent_path"
+touch log.txt
+echo "Parent path: $parent_path" >>log.txt
 
 # Create backup directory
 if ! test -f ~/backups; then
     mkdir ~/backups
-
+    echo "Created ~/backups dir." >>log.txt
 fi
 
 # Check if ~/.config exists and create it if not
 if ! test -f ~/.config; then
     mkdir ~/.config
+    echo "Created ~/.config dir." >>log.txt
 fi
 
 # Create backups for config files
 if test -f /etc/ssh/banner; then
     sudo mv /etc/ssh/banner ~/backups/banner.bak
+    echo "Backed up /etc/ssh/banner" >>log.txt
 fi
 
 if test -f /etc/ssh/ssh_config; then
     sudo mv /etc/ssh/ssh_config ~/backups/ssh_config.bak
+    echo "Backed up /etc/ssh/ssh_config." >>log.txt
 fi
 
 if test -f /etc/ssh/sshd_config; then
     sudo mv /etc/ssh/sshd_config ~/backups/sshd_config.bak
+    echo "Backed up /etc/ssh/sshd_config." >>log.txt
 fi
 
 if test -f ~/.bashrc; then
     sudo mv ~/.bashrc ~/backups/.bashrc.bak
+    echo "Backed up ~/.bashrc." >>log.txt
 fi
 
 if test -f ~/.zshrc; then
     sudo mv ~/.zshrc ~/backups/.zshrc.bak
+    echo "Backed up ~/.zshrc." >>log.txt
 fi
 
 if test -f ~/.tmux.conf; then
     sudo mv ~/.tmux.conf ~/backups/.tmux.conf.bak
+    echo "Backed up ~/.tmux.conf." >>log.txt
 fi
 
 # Update apt and install applications
-declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "rustc")
+declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "rustc" "scdoc")
 sudo apt update -y
 for i in "${apps[@]}"; do
-    type -p "$i" >/dev/null || (sudo apt install "$i" -y)
+    type -p "$i" >/dev/null || (sudo apt install "$i" -y) && echo "Installed application: $i" >>log.txt
 done
 
 # Font(s)
 mkdir -p ~/.local/share/fonts
+echo "Creataed ~/.local/share/fonts" >>log.txt
 cd ~/.local/share/fonts curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Mononoki/Regular/MononokiNerdFontMono-Regular.ttf
 curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Mononoki/Bold/MononokiNerdFontMono-Bold.ttf
 curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/AnonymousPro/Regular/AnonymiceProNerdFontMono-Regular.ttf
 sudo cp * /usr/local/share/fonts
+cd $parent_path
 fc-cache -f -v
+echo "Installed font." >>log.txt
 
 # Oh-my-zsh
 if ! test -f ~/.oh-my-zsh; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "Installed oh-my-zsh." >>log.txt
 fi
 
 # GitHub CLI
@@ -69,13 +81,17 @@ if ! test -f /usr/bin/gh; then
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
     sudo apt update
     sudo apt install gh -y
+    echo "Installed gh." >>log.txt
 fi
+
+# Rust
+curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
+exec zsh
+source "$HOME/.cargo/env"
 
 # Alacritty
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
-curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source "$HOME/.cargo/env"
 rustup override set stable
 rustup update stable
 cargo build --release
@@ -94,29 +110,30 @@ scdoc <extra/man/alacritty-bindings.5.scd | gzip -c | sudo tee /usr/local/share/
 
 # lsd
 cargo install --git https://github.com/lsd-rs/lsd.git --branch master
-
+echo "Installed lsd." >>log.txt
 # Create banner
-sudo figlet -f $HOST >~/banner
+sudo figlet -f slant "$HOST" >~/banner
 sudo cp ~/banner /etc/ssh/banner
+echo "Created ssh banner." >>log.txt
 sudo rm ~/banner
 
 # Move config files to necessary destinations
+echo "Moving new config files." >>log.txt
 cd "$parent_path"
 sudo cp "$parent_path/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config"
-echo "Moved ssh_config."
+echo "Moved ssh_config." >>log.txt
 sudo cp "$parent_path/assets/etc/ssh/sshd_config" "/etc/ssh/sshd_config"
-echo "Moved sshd_config."
+echo "Moved sshd_config." >>log.txt
 sudo cp -r "$parent_path/assets/.config/bpytop" ~/.config
-echo "Moved bpytop."
+echo "Moved bpytop." >>log.txt
 sudo cp -r "$parent_path/assets/.config/neofetch" ~/.config
-echo "Moved neofetch to .config."
+echo "Moved neofetch to .config." >>log.txt
 sudo cp -r "$parent_path/assets/.config/alacritty" ~/.config
-echo "Moved alacritty to .config."
+echo "Moved alacritty to .config." >>log.txt
 sudo cp -r "$parent_path/assets/home_dir/.zshrc" ~
-echo "Moved .bashrc to ~"
+echo "Moved .bashrc to ~" >>log.txt
 sudo cp -r "$parent_path/assets/home_dir/.bashrc" ~
-echo "Moved .tmux.conf to ~"
+echo "Moved .tmux.conf to ~" >>log.txt
 sudo cp -r "$parent_path/assets/home_dir/.tmux.conf" ~
-echo "Okay, well, it's done. Let's see if it actually worked..."
-
-# TODO: install alacritty (meaning also setup rust)
+clear
+echo "Done.  Please see log.txt for more information."
