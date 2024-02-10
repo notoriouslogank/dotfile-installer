@@ -59,20 +59,15 @@ done
 
 # Font(s)
 mkdir -p ~/.local/share/fonts
-echo "Creataed ~/.local/share/fonts" >>log.txt
-cd ~/.local/share/fonts curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Mononoki/Regular/MononokiNerdFontMono-Regular.ttf
+echo "Created ~/.local/share/fonts" >>log.txt
+cd ~/.local/share/fonts
+curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Mononoki/Regular/MononokiNerdFontMono-Regular.ttf
 curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Mononoki/Bold/MononokiNerdFontMono-Bold.ttf
 curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/AnonymousPro/Regular/AnonymiceProNerdFontMono-Regular.ttf
 sudo cp * /usr/local/share/fonts
 cd $parent_path
 fc-cache -f -v
 echo "Installed font." >>log.txt
-
-# Oh-my-zsh
-if ! test -f ~/.oh-my-zsh; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    echo "Installed oh-my-zsh." >>log.txt
-fi
 
 # GitHub CLI
 if ! test -f /usr/bin/gh; then
@@ -116,6 +111,12 @@ sudo figlet -f pagga "$HOST" >~/banner
 sudo cp ~/banner /etc/ssh/banner
 echo "Created ssh banner." >>log.txt
 sudo rm ~/banner
+
+# Oh-my-zsh
+if ! test -f ~/.oh-my-zsh; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "Installed oh-my-zsh." >>log.txt
+fi
 
 # Move config files to necessary destinations
 echo "Moving new config files." >>log.txt
