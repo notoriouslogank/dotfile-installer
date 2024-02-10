@@ -74,7 +74,7 @@ fi
 # Alacritty
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
-#curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 rustup override set stable
 rustup update stable
