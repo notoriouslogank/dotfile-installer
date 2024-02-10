@@ -51,7 +51,7 @@ if test -f ~/.tmux.conf; then
 fi
 
 # Update apt and install applications
-declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "rustc" "scdoc")
+declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "scdoc")
 sudo apt update -y
 for i in "${apps[@]}"; do
     type -p "$i" >/dev/null || (sudo apt install "$i" -y) && echo "Installed application: $i" >>log.txt
