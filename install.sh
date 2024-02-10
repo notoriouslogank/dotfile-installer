@@ -112,7 +112,7 @@ scdoc <extra/man/alacritty-bindings.5.scd | gzip -c | sudo tee /usr/local/share/
 cargo install --git https://github.com/lsd-rs/lsd.git --branch master
 echo "Installed lsd." >>log.txt
 # Create banner
-sudo figlet -f slant "$HOST" >~/banner
+sudo figlet -f pagga "$HOST" >~/banner
 sudo cp ~/banner /etc/ssh/banner
 echo "Created ssh banner." >>log.txt
 sudo rm ~/banner
