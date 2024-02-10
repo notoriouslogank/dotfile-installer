@@ -11,3 +11,4 @@ zstyle ':omz:update' mode disabled
 alias ls="lsd"
 alias lsa="lsd -a"
 alias lsl="lsd -al"
+alias tree="lsd --tree --depth 2"
