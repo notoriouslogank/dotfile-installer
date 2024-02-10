@@ -43,7 +43,7 @@ esac
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='lsd'
 fi
 
 if [ -f ~/.bash_aliases ]; then
@@ -58,5 +58,5 @@ if ! shopt -oq posix; then
     fi
 fi
 
-. "$HOME/.cargo/env"
-source /home/logank/.cargo/registry/src/github.com-1ecc6299db9ec823/alacritty-0.11.0/extra/completions/alacritty.bash
+#. "$HOME/.cargo/env"
+#source /home/logank/.cargo/registry/src/github.com-1ecc6299db9ec823/alacritty-0.11.0/extra/completions/alacritty.bash
