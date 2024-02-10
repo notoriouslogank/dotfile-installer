@@ -72,7 +72,6 @@ if ! test -f /usr/bin/gh; then
 fi
 
 # Alacritty
-cd ~
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
 #curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
