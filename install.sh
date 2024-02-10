@@ -43,7 +43,7 @@ if test -f ~/.tmux.conf; then
 fi
 
 # Update apt and install applications
-declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc")
+declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "rustc")
 sudo apt update -y
 for i in "${apps[@]}"; do
     type -p "$i" >/dev/null || (sudo apt install "$i" -y)
@@ -72,10 +72,11 @@ if ! test -f /usr/bin/gh; then
 fi
 
 # Alacritty
-cd $parent_path
+cd ~
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
-curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
+#curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
 rustup override set stable
 rustup update stable
 cargo build --release
