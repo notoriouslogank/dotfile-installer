@@ -7,31 +7,25 @@ parent_path=$(
 cd "$parent_path"
 echo "Parent path: $parent_path" >>log.txt
 
-# Check if ~/.config exists and create it if not
-if ! test -f ~/.config; then
-    mkdir ~/.config
-    echo "Created ~/.config dir." >>log.txt
-fi
-
 # Backups
 
 if ! test -f backups; then
-    mkdir -p backups/config && mkdir -p backups/etc && mkdir -p backups/home_dir
+    mkdir -p backups/config && mkdir -p backups/home_dir && mkdir -p backups/etc/ssh
 fi
 
 # ssh
 if test -f /etc/ssh/banner; then
-    sudo mv /etc/ssh/banner backups/banner.bak
+    sudo mv /etc/ssh/banner backups/etc/ssh/banner.bak
     echo "Backed up /etc/ssh/banner" >>log.txt
 fi
 
 if test -f /etc/ssh/ssh_config; then
-    sudo mv /etc/ssh/ssh_config backups/ssh_config.bak
+    sudo mv /etc/ssh/ssh_config backups/etc/ssh/ssh_config.bak
     echo "Backed up /etc/ssh/ssh_config." >>log.txt
 fi
 
 if test -f /etc/ssh/sshd_config; then
-    sudo mv /etc/ssh/sshd_config backups/sshd_config.bak
+    sudo mv /etc/ssh/sshd_config backups/etc/ssh/sshd_config.bak
     echo "Backed up /etc/ssh/sshd_config." >>log.txt
 fi
 
@@ -52,8 +46,17 @@ if test -f ~/.tmux.conf; then
 fi
 
 # .config
+
 if test -f ~/.config/alacritty; then
-    sudo mv ~/.config/alacritty backups/config/alacritty
+    sudo mv ~/.config/alacritty backups/config/alacritty.bak
+fi
+
+if test -f ~/.config/neofetch; then
+    sudo mv ~/.config/neofetch backups/config/neofetch.bak
+fi
+
+if test -f ~/.config/bpytop; then
+    sudo mv ~/.config/bpytop backups/config/bpytop.bak
 fi
 
 # applications
