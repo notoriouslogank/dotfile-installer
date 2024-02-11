@@ -31,32 +31,32 @@ fi
 
 # home_dir
 if test -f ~/.bashrc; then
-    sudo mv ~/.bashrc backups/bashrc.bak
+    sudo mv ~/.bashrc backups/home_dir/bashrc.bak
     echo "Backed up ~/.bashrc." >>log.txt
 fi
 
 if test -f ~/.zshrc; then
-    sudo mv ~/.zshrc backups/zshrc.bak
+    sudo mv ~/.zshrc backups/home_dir/zshrc.bak
     echo "Backed up ~/.zshrc." >>log.txt
 fi
 
 if test -f ~/.tmux.conf; then
-    sudo mv ~/.tmux.conf backups/tmux.conf.bak
+    sudo mv ~/.tmux.conf backups/home_dir/tmux.conf.bak
     echo "Backed up ~/.tmux.conf." >>log.txt
 fi
 
 # .config
 
 if test -f ~/.config/alacritty; then
-    sudo mv -r ~/.config/alacritty backups/config/alacritty.bak
+    sudo mv ~/.config/alacritty backups/config/alacritty.bak
 fi
 
 if test -f ~/.config/neofetch; then
-    sudo mv -r ~/.config/neofetch backups/config/neofetch.bak
+    sudo mv ~/.config/neofetch backups/config/neofetch.bak
 fi
 
 if test -f ~/.config/bpytop; then
-    sudo mv -r ~/.config/bpytop backups/config/bpytop.bak
+    sudo mv ~/.config/bpytop backups/config/bpytop.bak
 fi
 
 # applications
