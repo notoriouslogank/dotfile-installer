@@ -152,15 +152,15 @@ if ! test -f ~/.config; then
 fi
 
 # ssh
-sudo cp "$parent_path/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config"
-sudo cp "$parent_path/assetts/etc/ssh/sshd_config" "/etc/ssh/sshd_config"
-sudo cp "$parent_path/assets/etc/ssh/banner" "/etc/ssh/banner"
+sudo cp "/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config"
+sudo cp "assetts/etc/ssh/sshd_config" "/etc/ssh/sshd_config"
+sudo cp "/assets/etc/ssh/banner" "/etc/ssh/banner"
 echo "Created ssh configs." >>log.txt
 
 # .config
-cp -r "$parent_path/assets/config/alacritty" ~/.config
-cp -r "$parent_path/assets/config/bpytop" ~/.config
-cp -r "$parent_path/assets/config/neofetch" ~/.config
+sudo cp -r "$parent_path/assets/config/alacritty" ~/.config
+sudo cp -r "$parent_path/assets/config/bpytop" ~/.config
+sudo cp -r "$parent_path/assets/config/neofetch" ~/.config
 echo "Created .config files." >>log.txt
 
 # home_dir
