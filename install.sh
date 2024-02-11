@@ -147,4 +147,5 @@ cp -r "$parent_path/assetts/home_dir/bashrc" ~/.bashrc
 cp -r "$parent_path/assets/home_dir/tmux.conf" ~/.tmux.conf
 echo "Created shell config files." >>log.txt
 
+echo "Done." >>log.txt
 echo "Done.  Please see log.txt for more information."
