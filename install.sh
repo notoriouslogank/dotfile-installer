@@ -8,56 +8,31 @@ cd "$parent_path"
 echo "Parent path: $parent_path" >>log.txt
 
 # Backups
-
-if ! test -f backups; then
-    mkdir -p backups/config && mkdir -p backups/home_dir && mkdir -p backups/etc/ssh
-fi
+mkdir -p backups/config && mkdir -p backups/home_dir && mkdir -p backups/etc/ssh
 
 # ssh
-if test -f /etc/ssh/banner; then
-    sudo mv /etc/ssh/banner backups/etc/ssh/banner.bak
-    echo "Backed up /etc/ssh/banner" >>log.txt
-fi
-
-if test -f /etc/ssh/ssh_config; then
-    sudo mv /etc/ssh/ssh_config backups/etc/ssh/ssh_config.bak
-    echo "Backed up /etc/ssh/ssh_config." >>log.txt
-fi
-
-if test -f /etc/ssh/sshd_config; then
-    sudo mv /etc/ssh/sshd_config backups/etc/ssh/sshd_config.bak
-    echo "Backed up /etc/ssh/sshd_config." >>log.txt
-fi
+sudo mv /etc/ssh/banner backups/etc/ssh/banner.bak
+echo "Backed up /etc/ssh/banner" >>log.txt
+sudo mv /etc/ssh/ssh_config backups/etc/ssh/ssh_config.bak
+echo "Backed up /etc/ssh/ssh_config." >>log.txt
+sudo mv /etc/ssh/sshd_config backups/etc/ssh/sshd_config.bak
+echo "Backed up /etc/ssh/sshd_config." >>log.txt
 
 # home_dir
-if test -f ~/.bashrc; then
-    sudo mv ~/.bashrc backups/home_dir/bashrc.bak
-    echo "Backed up ~/.bashrc." >>log.txt
-fi
-
-if test -f ~/.zshrc; then
-    sudo mv ~/.zshrc backups/home_dir/zshrc.bak
-    echo "Backed up ~/.zshrc." >>log.txt
-fi
-
-if test -f ~/.tmux.conf; then
-    sudo mv ~/.tmux.conf backups/home_dir/tmux.conf.bak
-    echo "Backed up ~/.tmux.conf." >>log.txt
-fi
+sudo mv ~/.bashrc backups/home_dir/bashrc.bak
+echo "Backed up ~/.bashrc." >>log.txt
+sudo mv ~/.zshrc backups/home_dir/zshrc.bak
+echo "Backed up ~/.zshrc." >>log.tx
+sudo mv ~/.tmux.conf backups/home_dir/tmux.conf.bak
+echo "Backed up ~/.tmux.conf." >>log.txt
 
 # .config
-
-if test -f ~/.config/alacritty; then
-    sudo mv ~/.config/alacritty backups/config/alacritty.bak
-fi
-
-if test -f ~/.config/neofetch; then
-    sudo mv ~/.config/neofetch backups/config/neofetch.bak
-fi
-
-if test -f ~/.config/bpytop; then
-    sudo mv ~/.config/bpytop backups/config/bpytop.bak
-fi
+sudo mv ~/.config/alacritty backups/config/alacritty.bak
+echo "Backed up ~/.config/alacritty"
+sudo mv ~/.config/neofetch backups/config/neofetch.bak
+echo "Backed up ~/.config/neofetch"
+sudo mv ~/.config/bpytop backups/config/bpytop.bak
+echo "Backed up ~/.config/bpytop"
 
 # applications
 declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "scdoc")
@@ -69,7 +44,6 @@ for i in "${apps[@]}"; do
 done
 
 # Download and install fonts
-
 if ! test -f ~/.local/share/fonts; then
     mkdir ~/.local/share/fonts
     echo "Created ~/.local/share/fonts" >>log.txt
