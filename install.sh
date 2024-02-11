@@ -28,11 +28,11 @@ echo "Backed up ~/.tmux.conf." >>log.txt
 
 # .config
 sudo mv ~/.config/alacritty backups/config/alacritty.bak
-echo "Backed up ~/.config/alacritty"
+echo "Backed up ~/.config/alacritty" >>log.txt
 sudo mv ~/.config/neofetch backups/config/neofetch.bak
-echo "Backed up ~/.config/neofetch"
+echo "Backed up ~/.config/neofetch" >>log.txt
 sudo mv ~/.config/bpytop backups/config/bpytop.bak
-echo "Backed up ~/.config/bpytop"
+echo "Backed up ~/.config/bpytop" >>log.txt
 
 # applications
 declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "scdoc")
@@ -72,7 +72,7 @@ fi
 echo "Checking for rustup..." >>log.txt
 if ! test -f ~/.cargo/bin/rustup; then
     curl --protto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    echo "Installed rustup."
+    echo "Installed rustup." >>log.txt
 fi
 
 # Clone and build Alacritty
