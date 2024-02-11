@@ -167,7 +167,7 @@ echo "Created .config files." >>log.txt
 
 # home_dir
 cp -r "assets/home_dir/zshrc" ~/.zshrc
-cp -r "assetts/home_dir/bashrc" ~/.bashrc
+cp -r "assets/home_dir/bashrc" ~/.bashrc
 cp -r "assets/home_dir/tmux.conf" ~/.tmux.conf
 echo "Created shell config files." >>log.txt
 
