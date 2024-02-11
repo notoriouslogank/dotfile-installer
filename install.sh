@@ -116,7 +116,7 @@ echo "Created ssh banner." >>log.txt
 # Oh-my-zsh
 cd $parent_path
 if ! test -f ~/.oh-my-zsh; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     echo "Installed oh-my-zsh." >>log.txt
 fi
 
