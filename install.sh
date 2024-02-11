@@ -154,21 +154,21 @@ fi
 
 # ssh
 cd $parent_path
-sudo cp "/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config"
-sudo cp "assetts/etc/ssh/sshd_config" "/etc/ssh/sshd_config"
-sudo cp "/assets/etc/ssh/banner" "/etc/ssh/banner"
+sudo cp "assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config"
+sudo cp "assets/etc/ssh/sshd_config" "/etc/ssh/sshd_config"
+sudo cp "assets/etc/ssh/banner" "/etc/ssh/banner"
 echo "Created ssh configs." >>log.txt
 
 # .config
-sudo cp -r "$parent_path/assets/config/alacritty" ~/.config
-sudo cp -r "$parent_path/assets/config/bpytop" ~/.config
-sudo cp -r "$parent_path/assets/config/neofetch" ~/.config
+sudo cp -r "assets/config/alacritty" ~/.config
+sudo cp -r "assets/config/bpytop" ~/.config
+sudo cp -r "assets/config/neofetch" ~/.config
 echo "Created .config files." >>log.txt
 
 # home_dir
-cp -r "$parent_path/assets/home_dir/zshrc" ~/.zshrc
-cp -r "$parent_path/assetts/home_dir/bashrc" ~/.bashrc
-cp -r "$parent_path/assets/home_dir/tmux.conf" ~/.tmux.conf
+cp -r "assets/home_dir/zshrc" ~/.zshrc
+cp -r "assetts/home_dir/bashrc" ~/.bashrc
+cp -r "assets/home_dir/tmux.conf" ~/.tmux.conf
 echo "Created shell config files." >>log.txt
 
 echo "Done." >>log.txt
