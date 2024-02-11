@@ -35,7 +35,7 @@ sudo mv ~/.config/bpytop backups/config/bpytop.bak
 echo "Backed up ~/.config/bpytop" >>log.txt
 
 # applications
-declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "scdoc")
+declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "scdoc" "nmon" "net-tools")
 
 # Install applications
 sudo apt update -y
@@ -146,4 +146,6 @@ cp -r "assets/home_dir/tmux.conf" ~/.tmux.conf
 echo "Created shell config files." >>log.txt
 
 echo "Done." >>log.txt
+clear
+source ~/.zshrc
 echo "Done.  Please see log.txt for more information."
