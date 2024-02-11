@@ -15,36 +15,47 @@ fi
 
 # Backups
 
+if ! test -f backups; then
+    mkdir -p backups/config && mkdir -p backups/etc && mkdir -p backups/home_dir
+fi
+
 # ssh
 if test -f /etc/ssh/banner; then
     sudo mv /etc/ssh/banner backups/banner.bak
     echo "Backed up /etc/ssh/banner" >>log.txt
 fi
+
 if test -f /etc/ssh/ssh_config; then
     sudo mv /etc/ssh/ssh_config backups/ssh_config.bak
     echo "Backed up /etc/ssh/ssh_config." >>log.txt
 fi
+
 if test -f /etc/ssh/sshd_config; then
     sudo mv /etc/ssh/sshd_config backups/sshd_config.bak
     echo "Backed up /etc/ssh/sshd_config." >>log.txt
 fi
+
 # home_dir
 if test -f ~/.bashrc; then
     sudo mv ~/.bashrc backups/.bashrc.bak
     echo "Backed up ~/.bashrc." >>log.txt
 fi
+
 if test -f ~/.zshrc; then
     sudo mv ~/.zshrc backups/.zshrc.bak
     echo "Backed up ~/.zshrc." >>log.txt
 fi
+
 if test -f ~/.tmux.conf; then
     sudo mv ~/.tmux.conf backups/.tmux.conf.bak
     echo "Backed up ~/.tmux.conf." >>log.txt
 fi
+
 # .config
 if test -f ~/.config/alacritty; then
     sudo mv ~/.config/alacritty backups/config/alacritty
 fi
+
 # applications
 declare -a apps=("neofetch" "ranger" "git" "bpytop" "htop" "zsh" "toilet" "figlet" "tmux" "curl" "cmake" "pkg-config" "libfreetype6-dev" "libfontconfig1-dev" "libxcb-xfixes0-dev" "libxkbcommon-dev" "python3" "zsh-doc" "scdoc")
 
@@ -55,10 +66,12 @@ for i in "${apps[@]}"; do
 done
 
 # Download and install fonts
+
 if ! test -f ~/.local/share/fonts; then
     mkdir ~/.local/share/fonts
     echo "Created ~/.local/share/fonts" >>log.txt
 fi
+
 cd ~/.local/share/fonts
 curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Mononoki/Regular/MononokiNerdFontMono-Regular.ttf
 curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Mononoki/Bold/MononokiNerdFontMono-Bold.ttf
@@ -131,16 +144,22 @@ echo "Created ssh banner." >>log.txt
 
 # Config files
 
+if ! test -f ~/.config; then
+    mkdir ~/.config
+fi
+
 # ssh
 sudo cp "$parent_path/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config"
 sudo cp "$parent_path/assetts/etc/ssh/sshd_config" "/etc/ssh/sshd_config"
 sudo cp "$parent_path/assets/etc/ssh/banner" "/etc/ssh/banner"
 echo "Created ssh configs." >>log.txt
+
 # .config
 cp -r "$parent_path/assets/config/alacritty" ~/.config
 cp -r "$parent_path/assets/config/bpytop" ~/.config
 cp -r "$parent_path/assets/config/neofetch" ~/.config
 echo "Created .config files." >>log.txt
+
 # home_dir
 cp -r "$parent_path/assets/home_dir/zshrc" ~/.zshrc
 cp -r "$parent_path/assetts/home_dir/bashrc" ~/.bashrc
