@@ -11,3 +11,9 @@ Hostname 192.168.0.13
 SendEnv LANG LC_*
 HashKnownHosts yes
 GSSAPIAuthentication yes
+
+Host io
+Hostname 192.168.0.225
+SendEnv LANG LC_*
+HashKnownHosts yes
+GSSAPIAuthentication yes
