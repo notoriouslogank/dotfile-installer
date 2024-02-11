@@ -140,10 +140,11 @@ sudo cp assets/etc/ssh/banner /etc/ssh/banner
 echo "Created ssh banner." >>log.txt
 
 # Oh-my-zsh
-#if ! test -f ~/.oh-my-zsh; then
-#    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#    echo "Installed oh-my-zsh." >>log.txt
-#fi
+cd $parent_path
+if ! test -f ~/.oh-my-zsh; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "Installed oh-my-zsh." >>log.txt
+fi
 
 # Config files
 
@@ -152,6 +153,7 @@ if ! test -f ~/.config; then
 fi
 
 # ssh
+cd $parent_path
 sudo cp "/assets/etc/ssh/ssh_config" "/etc/ssh/ssh_config"
 sudo cp "assetts/etc/ssh/sshd_config" "/etc/ssh/sshd_config"
 sudo cp "/assets/etc/ssh/banner" "/etc/ssh/banner"
