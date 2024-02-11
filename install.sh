@@ -109,7 +109,7 @@ echo "Installed lsd." >>log.txt
 
 # Create banner
 cd $parent_path
-echo $HOST | figlet -f pagga >assets/etc/ssh/banner
+echo $HOST | tee figlet -f pagga >assets/etc/ssh/banner
 sudo cp assets/etc/ssh/banner /etc/ssh/banner
 echo "Created ssh banner." >>log.txt
 
