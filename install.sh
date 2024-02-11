@@ -22,7 +22,7 @@ echo "Backed up /etc/ssh/sshd_config." >>log.txt
 sudo mv ~/.bashrc backups/home_dir/bashrc.bak
 echo "Backed up ~/.bashrc." >>log.txt
 sudo mv ~/.zshrc backups/home_dir/zshrc.bak
-echo "Backed up ~/.zshrc." >>log.tx
+echo "Backed up ~/.zshrc." >>log.txt
 sudo mv ~/.tmux.conf backups/home_dir/tmux.conf.bak
 echo "Backed up ~/.tmux.conf." >>log.txt
 
